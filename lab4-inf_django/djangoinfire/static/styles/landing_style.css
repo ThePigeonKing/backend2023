@@ -1,0 +1,28 @@
+/* Стили для основного контента */
+.main-content {
+  text-align: center; /* Выравнивание содержимого по центру */
+  padding: 50px 0; /* Отступ сверху и снизу */
+}
+
+.main-content img {
+  max-width: 100%;
+  height: auto; /* Подгонка изображения по размеру экрана */
+  margin-bottom: 30px; /* Отступ снизу от картинки до кнопок */
+}
+
+/* Стили для кнопок */
+.button {
+  display: inline-block;
+  margin: 0 10px; /* Отступы между кнопками */
+  padding: 10px 20px; /* Паддинг внутри кнопок */
+  color: #fff; /* Белый текст */
+  background-color: #007bff; /* Синий фон */
+  border: none;
+  border-radius: 5px; /* Скругление углов */
+  text-decoration: none; /* Убрать подчёркивание текста */
+  transition: background-color 0.3s ease; /* Плавное изменение фона при наведении */
+}
+
+.button:hover {
+  background-color: #0056b3; /* Темно-синий фон при наведении */
+}

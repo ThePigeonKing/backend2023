@@ -1,3 +1,9 @@
+:root {
+  --dark-blue: #17212b;
+  --light-blue-grey: #4fa1d3;
+  --grey: #8899a6;
+}
+
 /* Основные стили для темной темы с темно-синими оттенками */
 body {
   background-color: #131b23; /* Темный фон, темно-синий */
@@ -64,7 +70,7 @@ header img {
 
 /* Стили для блоков постов */
 .card {
-  background-color: #17212b; /* Фон для блока поста */
+  background-color: var(--dark-blue); /* Фон для блока поста */
   margin-bottom: 20px;
   padding: 15px;
   border-radius: 8px; /* Скругленные углы */
@@ -83,18 +89,18 @@ header img {
 
 /* Стили для текста поста */
 .post-content {
-  color: #8899a6;
+  color: var(--grey);
   padding-top: 20px;
 }
 
 .post-detailed-title {
-  color: #8899a6;
+  color: var(--grey);
   /* padding-top: 20px; */
 }
 
 /* Стили для ссылок */
 a {
-  color: #4fa1d3; /* Синий цвет для ссылок */
+  color: var(--light-blue-grey); /* Синий цвет для ссылок */
   text-decoration: none; /* Убираем подчеркивание */
 }
 
@@ -103,6 +109,6 @@ a:hover {
 }
 
 /* ! wtf */
-.breadcrumb {
-  color: #bdc7ce;
+.li {
+  color: #ffffff;
 } 
