@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">-->
+<link rel="stylesheet" href="main.css">
+  <title>Страница А.А. Королёва</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Полищук Максим Вячеславович</h1>
+    <div class="flex">
+      <div class="profile-image">
+        <img src="./imgs/pov_me.jpg" alt="Полищук М.В.">
+      </div>
+      <div>
+        <h2>О себе</h2>
+        <p>
+          Я студент 4-го курса НИЯУ МИФИ.
+          Обучаюсь в бакалавриате по образовательной программе
+          «Информационная безопасность».
+          Планирую поступать в магистратуру ВШЭ.
+        </p>
+        <p>
+          Увлекаюсь программированием и игрой в доту.
+          Мои интересы связаны с разработкой веб-приложений и компьютерными железками.
+        </p>
+
+        <a href="https://home.mephi.ru/users/16073" class="btn">Моя страница</a>
+
+        <h2>Дисциплины</h2>
+
+        Вот некоторые изученные мною курсы:
+
+        <table>
+          <thead>
+            <tr>
+              <th>Название дисциплины</th>
+              <th>Форма промежуточного контроля</th>
+              <th>Семестр</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colspan="3">Обязательные дисциплины</th>
+            </tr>
+            <tr>
+              <td>Компьютерные сети</td>
+              <td>Экзамен</td>
+              <td>Весна 2023</td>
+            </tr>
+            <tr>
+              <td>Низкоуровневое программирование</td>
+              <td>Зачет</td>
+              <td>Весна 2022</td>
+            </tr>
+            <tr>
+              <td>Теория вероятностей и математическая статистика</td>
+              <td>Зачет</td>
+              <td>Весна 2022</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <th colspan="3">Дисциплины по выбору</th>
+            </tr>
+            <tr>
+              <td>Системы аналитических вычислений</td>
+              <td>Зачет</td>
+              <td>Весна 2023</td>
+            </tr>
+            <tr>
+              <td>Культура информационной безопасности</td>
+              <td>Зачет</td>
+              <td>Весна 2022</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Свяжитесь со мной</h2>
+
+        <form action="#">
+          <div class="field">
+            <label for="name">Ваше имя</label>
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="field">
+            <label for="email">Ваш адрес электронной почты</label>
+            <input type="email" name="email" id="email">
+          </div>
+          <div class="field">
+            <label for="body">Сообщение для меня</label>
+            <textarea name="body" id="body" cols="30" rows="10">
+
+      </textarea>
+          </div>
+          <div class="field">
+            <label for="type">Тип обращения</label>
+            <select name="type" id="type">
+              <option value="0">Предложение</option>
+              <option value="1">Жалоба</option>
+              <option value="2">Личное сообщение</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ratio">Как тебе сайт?</label>
+            <input type="range" name="ratio" id="ratio" min="0" max="10" step="1" value="9">
+          </div>
+
+          <label for="come_back_0">Посетишь сайт снова?</label>
+          <div class="checkbox">
+            <input type="radio" name="come_back" id="come_back_0" value="0" checked>
+            <label for="come_back_0">Конечно, да</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" name="come_back" id="come_back_1" value="1">
+            <label for="come_back_1">Возможно</label>
+          </div>
+          <div class="checkbox">
+            <input type="radio" name="come_back" id="come_back_2" value="2">
+            <label for="come_back_2">Ни за что</label>
+          </div>
+
+          <input type="submit" value="Отправить сообщение" class="btn">
+        </form>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="container">
+      Работу выполнил
+      <b>Полищук М.В.</b>
+      <div><i>5 октября 2023 г.</i></div>
+    </div>
+  </footer>
+</body>
+
+</html>

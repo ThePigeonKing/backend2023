@@ -12,4 +12,5 @@
 
 
 ![cat](misc/bald_cat.jpg)
+
 | literally me after completing course

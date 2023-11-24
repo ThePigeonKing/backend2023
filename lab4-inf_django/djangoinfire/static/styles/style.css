@@ -1,0 +1,108 @@
+/* Основные стили для темной темы с темно-синими оттенками */
+body {
+  background-color: #131b23; /* Темный фон, темно-синий */
+  color: #a9b7c6; /* Светлый текст */
+  font-family: 'Arial', sans-serif; /* Шрифт по умолчанию */
+}
+
+.header-brand {
+  display: flex;
+  align-items: center; /* Это свойство выравнивает дочерние элементы по центру по вертикали */
+  justify-content: flex-start; /* Это свойство выравнивает дочерние элементы в начало по горизонтали */
+}
+
+/* Стили для заголовка */
+header {
+  display: flex;
+  justify-content: space-between; /* Распределяет пространство между элементами */
+  align-items: center; /* Выравнивание по центру по вертикали */
+  padding: 10px 0; /* Некоторый отступ сверху и снизу */
+}
+
+/* Стили для изображения и названия в заголовке */
+header img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 15px; /* Отступ справа от логотипа */
+}
+
+/* Стиль для названия организации рядом с логотипом */
+.header-title {
+  color: #ffffff;
+  font-size: 36px; /* Размер шрифта */
+  font-weight: bold; /* Жирный шрифт для названия */
+}
+
+.header-logo {
+  margin-right: 10px; /* Отступ справа от логотипа */
+}
+
+.auth-links {
+  display: flex;
+  gap: 15px; /* Отступ между элементами аутентификации */
+  /* Дополнительные стили для ссылок аутентификации */
+}
+
+.auth-links a {
+  color: #ffffff; /* Цвет текста для ссылок */
+  text-decoration: none;
+  /* Дополнительные стили для ссылок */
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+.auth-links i {
+  margin-right: 5px; /* Отступ справа от иконки */
+}
+
+/* Стили для контейнера */
+.container {
+  padding: 20px;
+}
+
+/* Стили для блоков постов */
+.card {
+  background-color: #17212b; /* Фон для блока поста */
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 8px; /* Скругленные углы */
+}
+
+/* Стили для заголовков постов */
+.card-title {
+  color: #8899a6;
+  text-decoration: none; /* Убираем подчеркивание у ссылок */
+}
+
+.bi-person {
+  color: #4fa1d3;
+  padding-top: 20px;
+}
+
+/* Стили для текста поста */
+.post-content {
+  color: #8899a6;
+  padding-top: 20px;
+}
+
+.post-detailed-title {
+  color: #8899a6;
+  /* padding-top: 20px; */
+}
+
+/* Стили для ссылок */
+a {
+  color: #4fa1d3; /* Синий цвет для ссылок */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+a:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* ! wtf */
+.breadcrumb {
+  color: #bdc7ce;
+} 

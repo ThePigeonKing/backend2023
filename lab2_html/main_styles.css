@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fcfcfc;
+    padding: 0 30px;
+  }
+  
+  dl dt {
+    font-weight: bold;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid;
+    padding: 3px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-right {
+    text-align: right;
+  }
+  
+  .text-muted {
+    color: #6c757d;
+  }
+  
+  table.table-schedule th,
+  table.table-schedule td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  table.table-schedule tr td:first-child {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  
+  .lecture,
+  .seminar,
+  .lab,
+  .event {
+    padding: 3px 0;
+    font-weight: lighter;
+  }
+  
+  .lecture {
+    color: #004d40;
+  }
+  
+  .seminar {
+    color: #880e4f;
+  }
+  
+  .lab {
+    color: #0d47a1;
+  }
+  
+  .tutor {
+    font-style: italic;
+  }
+  
+  .curly-td
+  {
+    font-style: italic;
+  }
+  
+  .table-shedule {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .table-shedule th {
+    background-color: #ffffff; 
+    border: 1px solid #000; 
+    text-align: center; 
+    padding: 8px;
+  }

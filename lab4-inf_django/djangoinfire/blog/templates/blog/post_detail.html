@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{% url 'blog:index' %}">Посты</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">{{ post.pk }}</li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-body">
+    <h1 class="post-detailed-title">{{ post.title }}</h1>
+    <div class="post-content">{{ post.text }}</div>
+    <div class="card-text d-flex justify-content-between">
+      <div>
+        <div class="bi-person">
+          {{ post.author }}
+        </div>
+      </div>
+      <div class="text-muted">
+        <i class="bi-watch"></i>
+        {{post.created_at}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card-text">
+  <a href="{% url 'blog:post_edit' post.pk %}" class="card-link">
+    <i class="bi-pencil"></i>
+    Редактировать
+  </a>
+</div>
+<a href="{% url 'blog:post_delete' post.pk %}" class="card-link text-danger">
+  <i class="bi-trash"></i>
+  Удалить
+</a>
+{% endblock %}
