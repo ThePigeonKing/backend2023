@@ -2,9 +2,9 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a href="{% url 'blog:index' %}">Посты</a>
+      <a class="taskbar-href" href="{% url 'blog:index' %}">Посты</a>
     </li>
-    <li class="breadcrumb-item" aria-current="page">{{ post.pk }}</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="breadcrumb-text">{{ post.pk }}</span></li>
   </ol>
 </nav>
 <div class="card">
@@ -19,19 +19,21 @@
       </div>
       <div class="text-muted">
         <i class="bi-watch"></i>
-        {{post.created_at}}
+        {{ post.created_at }}
       </div>
     </div>
   </div>
 </div>
-<div class="card-text">
-  <a href="{% url 'blog:post_edit' post.pk %}" class="card-link">
-    <i class="bi-pencil"></i>
-    Редактировать
+<div class="link-container">
+  <div class="card-text">
+    <a href="{% url 'blog:post_edit' post.pk %}" class="card-link">
+      <i class="bi-pencil"></i>
+      Редактировать
+    </a>
+  </div>
+  <a href="{% url 'blog:post_delete' post.pk %}" class="card-link text-danger">
+    <i class="bi-trash"></i>
+    Удалить
   </a>
 </div>
-<a href="{% url 'blog:post_delete' post.pk %}" class="card-link text-danger">
-  <i class="bi-trash"></i>
-  Удалить
-</a>
 {% endblock %}

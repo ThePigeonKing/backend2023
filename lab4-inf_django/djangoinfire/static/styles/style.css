@@ -1,7 +1,11 @@
 :root {
   --dark-blue: #17212b;
+  --ddark-blue: #0a0a23;
   --light-blue-grey: #4fa1d3;
   --grey: #8899a6;
+  --white: #ffffffeb;
+  --greeny: #5ba9a2;
+  --greenoblue: #5b92a9;
 }
 
 /* Основные стили для темной темы с темно-синими оттенками */
@@ -89,12 +93,12 @@ header img {
 
 /* Стили для текста поста */
 .post-content {
-  color: var(--grey);
+  color: var(--white);
   padding-top: 20px;
 }
 
 .post-detailed-title {
-  color: var(--grey);
+  color: var(--greenoblue);
   /* padding-top: 20px; */
 }
 
@@ -108,7 +112,57 @@ a:hover {
   text-decoration: underline; /* Подчеркивание при наведении */
 }
 
-/* ! wtf */
-.li {
-  color: #ffffff;
-} 
+li {
+  margin-right: 5px;
+  color: var(--greeny)
+}
+
+li.breadcrumb-item::before{
+  color: var(--greeny) !important;
+  font-weight: bolder !important;
+}
+
+li.breadcrumb-item{
+  color: var(--greeny)!important;
+  font-weight: bolder !important;
+}
+
+.breadcrumb-text {
+  background-color:var(--ddark-blue);
+  border:none;
+  border-radius:10px;
+  padding:10px;
+}
+
+.card-link{
+  display: inline-block;
+  padding: 5px 20px;  
+  font-size: 16px; 
+  text-align: center;
+  text-decoration: none;
+  color: var(--greenoblue); 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  background-color: var(--ddark-blue);
+}
+
+.taskbar-href{
+  color: var(--greeny);
+  background-color:var(--ddark-blue);
+  border:none;
+  border-radius:10px;
+  padding:10px;
+  /* min-height:20px;  */
+  /* min-width: 120px; */
+}
+
+.link-container {
+  display: flex;
+  align-items: center; /* Выравнивает элементы по вертикали */
+  /* justify-content: space-around;  */
+}
+
+.card-text {
+  margin-right: 10px; /* Небольшой отступ между ссылками */
+}
