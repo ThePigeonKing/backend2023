@@ -1,17 +1,20 @@
 :root {
-  --dark-blue: #17212b;
+  --dark-blue: #19222c;
   --ddark-blue: #0a0a23;
+  --dddark-blue: #131b23;
+  --undark-blue: #27344d;
   --light-blue-grey: #4fa1d3;
-  --grey: #8899a6;
+  --grey: #a8b2b9;
   --white: #ffffffeb;
   --greeny: #5ba9a2;
+  --blue-link: #4fa1cf;
   --greenoblue: #5b92a9;
 }
 
 /* Основные стили для темной темы с темно-синими оттенками */
 body {
-  background-color: #131b23; /* Темный фон, темно-синий */
-  color: #a9b7c6; /* Светлый текст */
+  background-color: var(--dddark-blue); /* Темный фон, темно-синий */
+  color: var(--grey); /* Светлый текст */
   font-family: 'Arial', sans-serif; /* Шрифт по умолчанию */
 }
 
@@ -165,4 +168,29 @@ li.breadcrumb-item{
 
 .card-text {
   margin-right: 10px; /* Небольшой отступ между ссылками */
+}
+
+label[class="form-label"] {
+  font-weight: bold;
+  color: var(--white);
+}
+
+input[type="text"], textarea[name="text"], input[type="text"]:focus, textarea[name="text"]:focus, input[type="password"], input[type="password"]:focus {
+  background-color : var(--dark-blue);
+  border: 3px solid var(--blue-link);
+  box-sizing: border-box;
+  color: white;
+}
+
+/* ! TODO сделать отсутствие изменения фона при логине */
+/* label[class="form-label"]::after {
+  background-color: var(--dark-blue);
+  color: red;
+} */
+
+.btn-primary {
+  background-color: var(--dark-blue);
+  font-weight: bold;
+  border: 2px solid var(--dark-blue);
+  color: var(--blue-link);
 }

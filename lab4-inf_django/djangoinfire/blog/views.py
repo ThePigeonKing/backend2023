@@ -7,6 +7,8 @@ from django.views import generic
 
 class IndexView(generic.ListView):
     model = Post
+    paginate_by = 5
+    queryset = Post.objects.prefetch_related('author')
 
 
 class DetailView(generic.DetailView):
@@ -37,7 +39,3 @@ class IndexView(generic.ListView):
     paginate_by = 10
     queryset = Post.objects.prefetch_related('author')
 
-class UpdateView(LoginRequiredMixin, generic.UpdateView):
-    model = Post
-    fields = ['title', 'text']
-    template_name = "blog/post_edit.html"
