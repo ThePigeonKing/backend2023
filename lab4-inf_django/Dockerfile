@@ -16,6 +16,10 @@ RUN poetry config virtualenvs.create false
 # Установка зависимостей через poetry
 RUN poetry install --no-dev
 
+# миграции и ко
+RUN poetry run python3 djangoinfire/manage.py makemigrations
+RUN poetry run python3 djangoinfire/manage.py migrate
+
 # Указание команды для запуска приложения
 # Здесь вам нужно указать команду для запуска вашего Django-приложения
 CMD ["poetry", "run", "python3", "djangoinfire/manage.py", "runserver", "0.0.0.0:8001"]
