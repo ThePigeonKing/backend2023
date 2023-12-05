@@ -17,8 +17,8 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --no-dev
 
 # миграции и ко
-RUN poetry run python3 djangoinfire/manage.py makemigrations
-RUN poetry run python3 djangoinfire/manage.py migrate
+# RUN poetry run python3 djangoinfire/manage.py makemigrations
+# RUN poetry run python3 djangoinfire/manage.py migrate
 
 # Указание команды для запуска приложения
 # Здесь вам нужно указать команду для запуска вашего Django-приложения
