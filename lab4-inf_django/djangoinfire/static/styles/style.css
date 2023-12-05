@@ -1,15 +1,4 @@
-:root {
-  --dark-blue: #19222c;
-  --ddark-blue: #0a0a23;
-  --dddark-blue: #131b23;
-  --undark-blue: #27344d;
-  --light-blue-grey: #4fa1d3;
-  --grey: #a8b2b9;
-  --white: #ffffffeb;
-  --greeny: #5ba9a2;
-  --blue-link: #4fa1cf;
-  --greenoblue: #5b92a9;
-}
+@import "colors.css";
 
 /* Основные стили для темной темы с темно-синими оттенками */
 body {
@@ -168,6 +157,8 @@ li.breadcrumb-item{
 
 .card-text {
   margin-right: 10px; /* Небольшой отступ между ссылками */
+  flex-grow: 1; /* Растягивает элемент, чтобы он занял доступное пространство */
+  align-items: flex-end; /* Выравнивание элементов по нижнему краю */
 }
 
 label[class="form-label"] {
@@ -193,4 +184,8 @@ input[type="text"], textarea[name="text"], input[type="text"]:focus, textarea[na
   font-weight: bold;
   border: 2px solid var(--dark-blue);
   color: var(--blue-link);
+}
+
+.text-muted {
+  color: var(--blue-link) !important;
 }

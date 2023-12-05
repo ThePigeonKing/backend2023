@@ -1,32 +1,22 @@
-{% extends 'base.html' %}
-{% include "pagination/pagination.html" %}
-
+{% extends 'base.html' %} 
+{% include "pagination/pagination.html" %} 
 {% block content %}
-  <h1>Посты</h1>
-  <div class="my-4">
-    <a href="{%url 'blog:post_new'%}" class="btn btn-primary">
-      Новый пост
-    </a>
+<h1>Посты</h1>
+<div class="my-4">
+  <a href="{%url 'blog:post_new'%}" class="btn btn-primary"> Новый пост </a>
+</div>
+{% if post_list %} {% for post in post_list %}
+<div class="card mb-2">
+  <div class="card-body">
+    <h3 class="card-title">
+      <a href="{% url 'blog:detail' post.pk %}"> {{ post.title }} </a>
+    </h3>
+    <div class="post-content">{{ post.text}}</div>
+    <div class="bi-person">{{ post.author }}</div>
   </div>
-  {% if post_list %}
-    {% for post in post_list %}
-      <div class="card mb-2">
-        <div class="card-body">
-          <h3 class="card-title">
-            <a href="{% url 'blog:detail' post.pk %}">
-              {{ post.title }}
-            </a>
-          </h3>
-          <div class="post-content">
-            {{ post.text}}
-          </div>
-          <div class="bi-person">
-            {{ post.author }}
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>Посты не найдены.</p>
-  {% endif %}
+</div>
+{% endfor %} {% else %}
+<p>Посты не найдены.</p>
+{% endif %} 
+{% include "pagination/pagination.html" %} 
 {% endblock %}

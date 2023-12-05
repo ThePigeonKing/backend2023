@@ -36,4 +36,30 @@
     Удалить
   </a>
 </div>
+<br><br>
+<h2 class="post-detailed-title">Комментарии</h2>
+{% for comment in comments %}
+<div class="card my-2">
+  <div class="post-detailed-title">
+    <i class="bi-person"></i>
+    {% if comment.is_anonymous %}
+    Anon
+    {% else %}
+    {{ comment.author }}
+    {% endif %}
+  </div>
+  <div class="post-content">
+    <p> {{ comment.text }}</p>
+  </div>
+</div>
+{% empty %}
+<div class="card" style="display: flex; align-items: left; justify-content: flex-start;">
+  <p style="color: white;"> Тут пока что пусто</p>
+</div>
+{% endfor %}
+<form action="{% url 'blog:detail' post.pk %}" method="post">
+  {% csrf_token %}
+  <a href="{% url 'blog:comment_create' post.pk %}" class="card-link">Добавить комментарий</a>
+</form>
+<br>
 {% endblock %}

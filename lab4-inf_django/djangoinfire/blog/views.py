@@ -1,9 +1,8 @@
-from blog.models import Post
-from django.urls import reverse_lazy
+from blog.models import Post, Comment
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
-
 
 class IndexView(generic.ListView):
     model = Post
@@ -13,6 +12,12 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Post
+    # прикрепляем comment к посту
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all().order_by('created_at')
+        
+        return context
 
 
 class CreateView(LoginRequiredMixin, generic.CreateView):
@@ -34,8 +39,19 @@ class DeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Post
     success_url = reverse_lazy("blog:index") 
 
-class IndexView(generic.ListView):
-    model = Post
-    paginate_by = 10
-    queryset = Post.objects.prefetch_related('author')
 
+# <---- COMMENTS ----->
+class CommentCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Comment
+    template_name = "blog/comment_create.html"
+    fields = ['text', 'is_anonymous']
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse('blog:detail', kwargs={'pk': self.kwargs['pk']})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pk'] = self.kwargs['pk']
+        return context

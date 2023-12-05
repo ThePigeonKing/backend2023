@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a class="taskbar-href" href="{% url 'blog:index' %}">Посты</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a class="taskbar-href" href="{% url 'blog:detail' pk=pk%}">Пост {{pk}}</a>
+    </li>
+    <li class="breadcrumb-item ">
+      Новый комментарий
+    </li>
+  </ol>
+</nav>
+<br>
+<h2>Добавить комментарий</h2>
+<br>
+<form method="post" action="{% url 'blog:comment_create' pk=pk %}" class="comment-form">
+  {% csrf_token %}
+  <div>
+    <label for="{{ form.text.id_for_label }}">Текст комментария:</label>
+    <br>
+    <textarea name="{{ form.text.name }}" id="{{ form.text.id_for_label }}"
+      class="comment-textarea">{{ form.text.value|default:'' }}</textarea>
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="{{ form.is_anonymous.id_for_label }}">&nbsp;&nbsp;Опубликовать анонимно?&nbsp;&nbsp;</label>
+    <p>&nbsp;&nbsp;</p>
+    {{ form.is_anonymous }}
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Добавить комментарий</button>
+</form>
+<br>
+<a class='back' href="{% url 'blog:detail' pk=pk %}">Назад к посту</a>
+{% endblock %}

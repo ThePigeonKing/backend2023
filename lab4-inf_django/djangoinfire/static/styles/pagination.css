@@ -1,0 +1,27 @@
+@import "colors.css";
+
+/* обычный стиль */
+.page-item, .page-link {
+    border: none;
+    border-radius: 5px;
+    background-color: var(--dark-blue);
+    color: var(--blue-link);
+}
+
+/* текущая страница */
+.page-item.active .page-link {
+    background-color: var(--undark-blue); /* Цвет фона для активной кнопки */
+    color: var(--white); /* Цвет текста для активной кнопки */
+}
+
+/* при наведении */
+.page-item:hover .page-link {
+    background-color: var(--undark-blue); 
+    color: var(--white); 
+    transition: background-color .5s;
+}
+
+/* боковые кнопки */
+.page-item:first-child .page-link, .page-item:last-child .page-link {
+    padding: 5px 15px; /* Отступы */
+}
