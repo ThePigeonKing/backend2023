@@ -1,7 +1,7 @@
 from blog.models import Post, Comment
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
 
 class IndexView(generic.ListView):
@@ -55,3 +55,29 @@ class CommentCreateView(LoginRequiredMixin, generic.CreateView):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['pk']
         return context
+    
+class CommentMoreView(LoginRequiredMixin, generic.UpdateView):
+    model = Comment
+    fields = ['text', 'is_anonymous']
+    template_name = "blog/comment_more.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment'] = self.object
+        context['post'] = self.object.post
+        return context
+    
+class CommentUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Comment
+    fields = ['text', 'is_anonymous']
+    template_name = "blog/comment_edit.html"
+    def get_success_url(self):
+        return reverse('blog:comment_more', kwargs={'pk': self.object.pk})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['post'] = self.object.post
+        return context
+    
+class CommentDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Comment
+    def get_success_url(self):
+        return reverse('blog:detail', kwargs={'pk': self.object.post.pk})   

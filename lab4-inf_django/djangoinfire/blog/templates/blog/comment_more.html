@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'blog:index' %}">Посты</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'blog:detail' post.pk%}">{{ post.title }}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Комментарий № {{comment.pk}}
+        </li>
+    </ol>
+</nav>
+<div class="card my-2">
+    <div class="card-header">
+        <div class="author">
+            <i class="bi-person"></i>
+
+            {% if comment.is_anonymous %}
+            Аноним
+            {% else %}
+            {{ comment.author }}
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="card-text">
+            <p class="comment">{{ comment.text }}</p>
+        </div>
+        <div class="card-text text-muted small">
+            <i class="bi-watch"></i>
+            {{comment.created_at}}
+        </div>
+        <br>
+        <div class="card-text d-flex align-items-center">
+            <a href="{% url 'blog:comment_edit' comment.pk %}" class="card-link mx-2">
+                <i class="bi-pencil"></i>
+                Редактировать
+            </a>
+            <form id="deleteForm" action="{% url 'blog:comment_delete' comment.pk %}" method="post">
+                {% csrf_token %}
+                <button type="button" class="card-link text-danger" onclick="confirmDelete()">
+                    <i class="bi-trash"></i>
+                    Удалить
+                </button>
+            </form>
+            <script>
+                function confirmDelete() {
+                    var result = confirm("Вы уверены, что хотите удалить этот комментарий?");
+                    if (result) {
+                        document.getElementById("deleteForm").submit();
+                    } else {
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</div>
+<br>
+
+<br>
+<a class='back' href="{% url 'blog:detail' post.pk %}">Назад к посту</a>
+{% endblock %}

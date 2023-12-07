@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'blog:index' %}">Посты</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'blog:detail' post.pk%}">{{post.title}}</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'blog:comment_more' comment.pk%}">Комментарий № {{comment.pk}}</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Редактирование комментария
+        </li>
+    </ol>
+</nav>
+<br>
+<h1>Редактирование комментария</h1>
+<br>
+<form method="post">
+    {% csrf_token %}
+
+    <label for="{{ form.text.id_for_label }}">Текст комментария:</label>
+    <textarea name="{{ form.text.name }}" rows="10">{{ form.text.value }}</textarea>
+    <br>
+    <div class="form-group">
+        <label for="{{ form.is_anonymous.id_for_label }}">&nbsp;&nbsp;Изменить статус анонимности:&nbsp;&nbsp;</label>
+        <p>&nbsp;&nbsp;</p>
+        {{ form.is_anonymous }}
+    </div>
+    <br>
+    {% bootstrap_button button_type="submit" content="Сохранить" %}
+</form>
+{% endblock %}

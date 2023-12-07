@@ -10,3 +10,97 @@
   --blue-link: #4fa1cf;
   --greenoblue: #5b92a9;
 }
+
+.author{
+  color: var(--light-blue-grey);
+}
+
+.comment{
+  color: var(--greeny);
+}
+
+.no-com{
+  background-color: var(--undark-blue);
+  color: var(--greenoblue);
+  
+  font-size: 120%;  
+  padding: 10px; 
+  border-radius: 10px;
+}
+
+.you{
+  color:#5ba9a2;
+}
+
+textarea{
+  color: black;
+  display: block;
+  width: 100%;
+  border-width: 3px;
+}
+
+input#id_title.form-control{
+  background-color: var(--undark-blue);
+  border-color: var(--light-blue-grey);
+  border-width: 3px;
+}
+
+textarea#id_text.form-control{
+  background-color: var(--undark-blue);
+  border-color: var(--light-blue-grey);
+  border-width: 3px;
+}
+
+textarea#id_text.comment-textarea{
+  background-color: var(--undark-blue);
+  border-color: var(--light-blue-grey);
+  border-width: 3px;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 200px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
+.form-group input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--light-blue-grey);
+  background-color: var(--dark-blue);
+  outline: none;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: var(--blue-link); 
+  border-radius: 4px; 
+  text-align: center;
+  height: 30px;
+  background-color: var(--dark-blue);
+  font-weight: bold;
+  border: 2px solid var(--dark-blue);
+  color: var(--blue-link);
+}
+
+.form-group input[type="checkbox"]:checked{
+  content: url('anon.png');
+  color: var(--undark-blue);
+  background-color: var(--light-blue-grey);
+}
+
+.back{
+  background-color: var(--light-blue-grey);
+  color: var(--dark-blue);
+  padding: 10px 20px;
+  border-radius: 5px; 
+  font-weight: bold;
+}

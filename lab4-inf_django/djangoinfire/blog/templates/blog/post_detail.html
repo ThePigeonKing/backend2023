@@ -22,40 +22,65 @@
         {{ post.created_at }}
       </div>
     </div>
-  </div>
-</div>
-<div class="link-container">
-  <div class="card-text">
+    <br>
     <a href="{% url 'blog:post_edit' post.pk %}" class="card-link">
       <i class="bi-pencil"></i>
       Редактировать
     </a>
-  </div>
+
   <a href="{% url 'blog:post_delete' post.pk %}" class="card-link text-danger">
     <i class="bi-trash"></i>
     Удалить
   </a>
+
+  </div>
+  
 </div>
+
+
 <br><br>
 <h2 class="post-detailed-title">Комментарии</h2>
+<br>
 {% for comment in comments %}
 <div class="card my-2">
-  <div class="post-detailed-title">
-    <i class="bi-person"></i>
-    {% if comment.is_anonymous %}
-    Anon
-    {% else %}
-    {{ comment.author }}
+  <div class="card-header">
+    <div class="author">
+      <i class="bi-person"></i>
+
+      {% if comment.is_anonymous %}
+      Аноним
+      {% else %}
+      {{ comment.author }}
+      {% endif %}
+      {% if user == comment.author %}
+    <p class="you">Ваш комментарий </p>
     {% endif %}
   </div>
-  <div class="post-content">
-    <p> {{ comment.text }}</p>
+    
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <p class="comment">{{ comment.text }}</p>
+    </div>
+
+    <div class="card-text text-muted small">
+      <i class="bi-watch"></i>
+      {{comment.created_at}}
+    </div>
+    <br>
+    {%if user == comment.author %}
+    <a href="{% url 'blog:comment_more' comment.pk %}" class="card-link stretched-link">
+      Подробнее
+    </a>
+    {% endif %}
   </div>
 </div>
+<br>
 {% empty %}
-<div class="card" style="display: flex; align-items: left; justify-content: flex-start;">
-  <p style="color: white;"> Тут пока что пусто</p>
+<div class="no-com">
+  <p> Комментариев пока нет</p>
 </div>
+<br>
 {% endfor %}
 <form action="{% url 'blog:detail' post.pk %}" method="post">
   {% csrf_token %}
