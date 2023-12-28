@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Добро пожаловать в HellCars!</h1>
+        <p class="lead">Лучший выбор автомобилей для вас.</p>
+        <hr class="my-4">
+        <p>Ознакомьтесь с нашим ассортиментом автомобилей, брендов и категорий.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'car_list' %}" role="button">Посмотреть автомобили</a>
+    </div>
+</div>
+{% endblock content %}

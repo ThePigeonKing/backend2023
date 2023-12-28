@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        {% for car in cars %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                {% if car.image %}
+                    <img src="{{ car.image.url }}" class="card-img-top car-image" alt="{{ car.model }}">
+                {% else %}
+                    <img src="{% static 'static/images/no-image-available.png' %}" class="card-img-top car-image" alt="No image available">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{ car.model }}</h4>
+                    <p class="card-text"><b>Производитель:</b> {{ car.brand.name }}</p>
+                    <p class="card-text"><b>Цена:</b> {{ car.price }} ₽</p>
+                    <p class="card-text"><b>Рейтинг:</b> {{ car.average_rating }} / 5 ⭐</p>
+                    <a href="{% url 'car_detail' car.id %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <p>Автомобили не найдены.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

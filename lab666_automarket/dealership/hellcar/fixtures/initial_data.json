@@ -1,0 +1,56 @@
+[
+    {
+        "model": "hellcar.brand",
+        "pk": 1,
+        "fields": {
+            "name": "Brand1",
+            "slug": "brand1"
+        }
+    },
+    {
+        "model": "hellcar.brand",
+        "pk": 2,
+        "fields": {
+            "name": "Brand2",
+            "slug": "brand2"
+        }
+    },
+    {
+        "model": "hellcar.category",
+        "pk": 1,
+        "fields": {
+            "name": "SUV",
+            "slug": "suv"
+        }
+    },
+    {
+        "model": "hellcar.category",
+        "pk": 2,
+        "fields": {
+            "name": "Sedan",
+            "slug": "sedan"
+        }
+    },
+    {
+        "model": "hellcar.car",
+        "pk": 1,
+        "fields": {
+            "brand": 1,
+            "category": 1,
+            "model": "Model 1",
+            "price": 25000.00,
+            "description": "Описание автомобиля 1"
+        }
+    },
+    {
+        "model": "hellcar.car",
+        "pk": 2,
+        "fields": {
+            "brand": 2,
+            "category": 2,
+            "model": "Model 2",
+            "price": 30000.00,
+            "description": "Описание автомобиля 2"
+        }
+    }
+]

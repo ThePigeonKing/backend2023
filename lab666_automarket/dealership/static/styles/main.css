@@ -1,0 +1,43 @@
+@import 'variables.css';
+
+body {
+    background-color: var(--light-background);
+    color: var(--dark-text);
+}
+
+.content {
+    min-height: calc(100vh - 56px - 50px); /* Высота viewport минус высота navbar и footer */
+}
+
+.navbar {
+    background-color: var(--dark-green);
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: var(--light-text);
+}
+
+.footer {
+    height: 50px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--footer-background);
+    color: var(--light-text);
+}
+
+a, a:hover, a:focus {
+    color: var(--purple);
+}
+
+.btn-primary {
+    background-color: var(--green-button);
+    border-color: var(--dark-border);
+}
+
+.car-image {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    margin-bottom: 15px; 
+}
