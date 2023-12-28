@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "hellcar.apps.HellcarConfig",
     "django_bootstrap5",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [

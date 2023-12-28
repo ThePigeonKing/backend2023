@@ -1,0 +1,28 @@
+@import 'variables.css';
+
+.brand-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    background-color: #eeee;
+}
+
+.brand-logo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.brand-name {
+    margin-top: 10px;
+}
+
+.brand-logo {
+    height: 100px; /* Фиксированная высота */
+    width: auto; /* Ширина регулируется автоматически */
+    object-fit: contain; /* Гарантирует, что весь логотип поместится */
+    border-radius: 5px; /* Небольшое скругление углов */
+    margin: auto; /* Центрирование изображения */
+    display: block;
+}

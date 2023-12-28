@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Бренды Автомобилей</h2>
+    <div class="row">
+        {% for brand in brands %}
+        <div class="col-md-3 mb-3">
+            <div class="brand-card">
+                {% if brand.logo %}
+                    <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="brand-logo">
+                {% else %}
+                    <img src="{% static 'images/default-brand-logo.png' %}" alt="No logo" class="brand-logo">
+                {% endif %}
+                <div class="brand-name">
+                    <a href="{% url 'brand_detail' brand.slug %}">{{ brand.name }}</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

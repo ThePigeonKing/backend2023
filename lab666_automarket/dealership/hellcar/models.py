@@ -5,6 +5,7 @@ from django.db.models import Avg
 class Brand(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
+    logo = models.ImageField(upload_to='brand_logos/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

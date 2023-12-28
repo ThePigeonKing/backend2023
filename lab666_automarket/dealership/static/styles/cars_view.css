@@ -1,0 +1,19 @@
+.search-sort-form input,
+.search-sort-form select,
+.search-sort-form button {
+    border-radius: 20px; /* Округлые углы */
+    border: 1px solid #36644b; /* Цвет границы */
+    background-color: #eeeeee; /* Цвет фона */
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.search-sort-form button {
+    background-color: #80b462; /* Цвет кнопки */
+    color: #17261d; /* Цвет текста кнопки */
+    border: none;
+}
+
+.search-sort-form button:hover {
+    background-color: #65987b; /* Цвет кнопки при наведении */
+}

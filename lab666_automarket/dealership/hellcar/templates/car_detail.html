@@ -22,18 +22,18 @@
         </div>
     </div>
     <br>
-    <div>
+    <div class="mt-4">
         <h3>Отзывы</h3>
         {% for review in car.reviews.all %}
-        <div>
+        <div class="review-card">
             <p>{{ review.text }}</p>
-            <p>Рейтинг: {{ review.rating }} ⭐</p>
+            <p class="review-rating">Рейтинг: {{ review.rating }} ⭐</p>
         </div>
         {% empty %}
         <p>Отзывы отсутствуют.</p>
         {% endfor %}
     </div>
-    <div class="review-form">
+    <div class="col-12 mt-4">
         <h3>Добавить отзыв</h3>
         {% if user.is_authenticated %}
         <form method="post">

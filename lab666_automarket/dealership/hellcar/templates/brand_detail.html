@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="container mt-4">
+    <h2>Автомобили марки {{ brand.name }}</h2>
     <form method="get" class="search-sort-form mb-4">
         <input type="text" name="search" placeholder="Поиск по названию" value="{{ request.GET.search }}">
         <select name="sort">
@@ -38,4 +39,4 @@
         {% endfor %}
     </div>
 </div>
-{% endblock content %}
+{% endblock %}
