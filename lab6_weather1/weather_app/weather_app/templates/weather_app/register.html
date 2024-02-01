@@ -38,8 +38,7 @@
 
         <h2>Register</h2>
         <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken"
-                value="fpyvr2d2LJHbdzaTnK81VnE3gUau0dSowzQrSWlJ85hecwkqb4UzbLfMeX9Yn7IY">
+            {% csrf_token %}
             <p>
                 <label for="id_username">Username:</label>
                 <input type="text" name="username" maxlength="150" autofocus required
