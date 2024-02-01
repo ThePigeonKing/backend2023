@@ -1,0 +1,61 @@
+{% extends "weather_app/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Manage Your City Weather Subscriptions</h2>
+    
+    <!-- Display Django Messages for Feedback -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Form to Add a New Subscription -->
+    <div class="mb-4">
+        <h4>Add a New City</h4>
+        <form method="post" action="{% url 'manage_subscriptions' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+    </div>
+    
+    <!-- Display Current Subscriptions and Unsubscribe Option -->
+    <h3>Your Subscribed Cities</h3>
+    <div class="row">
+
+        {% for subscription, report in detailed_weather_reports %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ subscription.city_name }}</h5>
+                    <p class="card-text"><strong>Weather:</strong> {{ report.weather.0.main }} ({{ report.weather.0.description }})</p>
+                    <p class="card-text"><strong>Temperature:</strong> {{ report.main.temp }}°C (Feels like: {{ report.main.feels_like }}°C)</p>
+                    <p class="card-text"><strong>Humidity:</strong> {{ report.main.humidity }}%</p>
+                    <p class="card-text"><strong>Wind Speed:</strong> {{ report.wind.speed }} m/s</p>
+                    <p class="card-text"><strong>Cloudiness:</strong> {{ report.clouds.all }}%</p>
+                    {% if report.snow %}
+                        <p class="card-text"><strong>Snowfall (last hour):</strong> {{ report.snow.1h }} mm</p>
+                    {% endif %}
+                    <p class="card-text"><strong>Sunrise:</strong> {{ report.formatted_sunrise }} </p>
+                    <p class="card-text"><strong>Sunset:</strong> {{ report.formatted_sunset }} </p>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="{% url 'city_detail' subscription.city_name %}" class="btn btn-info btn-sm">View Details</a>
+                    <form action="{% url 'unsubscribe' subscription.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Unsubscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>You have no subscriptions yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

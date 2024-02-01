@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "weather-app"
+version = "0.1.0"
+description = ""
+authors = ["lndkv"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11 <=3.12"
+django = "^5.0.1"
+requests = "^2.31.0"
+django-bootstrap5 = "^23.4"
+geonamescache = "^2.0.0"
+pytz = "^2023.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

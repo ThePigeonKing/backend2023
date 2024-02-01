@@ -1,0 +1,22 @@
+{% extends "weather_app/base.html" %}
+
+{% block title %}Main Page - Weather App{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Weather Forecast for Major Cities</h1>
+    <div class="row">
+        {% for report in weather_reports %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ report.name }}</h5>
+                        <p class="card-text">Temperature: {{ report.main.temp }}°C</p>
+                        <p class="card-text">Condition: {{ report.weather.0.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No weather data available.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

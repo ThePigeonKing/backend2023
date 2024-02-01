@@ -1,0 +1,32 @@
+version: "3.1"
+
+services:
+
+  db:
+    restart: always
+    image: postgres
+    container_name: postgres-server
+    environment:
+      - POSTGRES_USER=worker
+      - POSTGRES_PASSWORD=somestrongpassword
+      - POSTGRES_DB=django
+      - POSTGRES_PORT=5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_car_data:/var/lib/postgresql/data/
+
+  pgadmin:
+      image: dpage/pgadmin4
+      depends_on:
+        - db
+      ports:
+        - "5433:80"
+      environment:
+        PGADMIN_DEFAULT_EMAIL: ldnkv@mail.ru
+        PGADMIN_DEFAULT_PASSWORD: 3001
+      restart: always
+
+
+volumes:
+  postgres_car_data:
