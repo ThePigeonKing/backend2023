@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "lab1-modification-lnd"
+version = "0.1.0"
+description = ""
+authors = ["lndkv"]
+readme = "README.md"
+packages = [{include = "lab1_modification_lnd"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11 <=3.12"
+pytest = "^8.0.0"
+pytest-sugar = "^1.0.0"
+pytest-cov = "^4.1.0"
+coverage = "^7.4.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

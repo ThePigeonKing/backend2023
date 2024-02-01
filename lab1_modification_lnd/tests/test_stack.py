@@ -1,9 +1,15 @@
+import sys
+from pathlib import Path
+
 from pytest import raises
+
+# add dir to syspath
+sys.path.append(str(Path(__file__).parent.parent))
+
 from stack import Stack
 
 
 class TestStack:
-
     # Инициализация (выполняется для каждого из тестов класса)
     def setup_method(self):
         self.s = Stack()
