@@ -21,4 +21,25 @@
         <p><strong>Timezone:</strong> {{ weather_report.timezone }}</p>
     </div>
 </div>
+
+<div class="comments-section">
+    <h3>Comments</h3>
+    {% for comment in comments %}
+    <div class="comment">
+        <p><strong>{{ comment.user.username }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }}): {{ comment.text }}</p>
+        {% if comment.user == request.user %}
+            <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger btn-sm">Delete</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <!-- Comment Form -->
+    <h4>Add a comment</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </form>
+</div>
+
 {% endblock %}

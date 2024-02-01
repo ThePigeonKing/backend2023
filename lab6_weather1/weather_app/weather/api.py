@@ -1,9 +1,12 @@
 import requests
 import geonamescache
+import os
 
 def get_weather_data(city):
     # TODO вынести в .env файл
-    api_key = '7709c5f39cce34be6621da3757137086'
+    api_key = os.getenv("APIKEY", None)
+    if api_key is None:
+        raise ValueError("API key not defined!")
     base_url = 'http://api.openweathermap.org/data/2.5/weather?'
     complete_url = f"{base_url}appid={api_key}&q={city}&units=metric"
     response = requests.get(complete_url)

@@ -4,8 +4,8 @@ from .api import get_weather_data, get_city_choices
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.contrib import messages
-from .forms import CitySubscriptionForm, RegisterForm
-from .models import CitySubscription
+from .forms import CitySubscriptionForm, RegisterForm, CommentForm
+from .models import CitySubscription, Comment
 import random
 import geonamescache
 
@@ -85,11 +85,35 @@ def unsubscribe(request, subscription_id):
 
 @login_required
 def city_detail(request, city_name):
+    # Fetch the city subscription and weather data
     subscription = get_object_or_404(CitySubscription, user=request.user, city_name=city_name)
     weather_report = get_weather_data(city_name)
-    
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.city_subscription = subscription
+            new_comment.save()
+            return redirect('city_detail', city_name=city_name)  # Reload
+    else:
+        comment_form = CommentForm()
+
+    # Fetch existing comments for the city
+    comments = Comment.objects.filter(city_subscription=subscription).order_by('-created_at')
     return render(request, 'weather_app/city_detail.html', {
         'subscription': subscription,
         'weather_report': weather_report,
+        'comments': comments,
+        'comment_form': comment_form,
     })
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)  
+    city_name = comment.city_subscription.city_name
+    comment.delete()
+    return redirect('city_detail', city_name=city_name)
+
 
