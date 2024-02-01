@@ -1,0 +1,27 @@
+body {
+    background-color: #FBFADA;
+    color: #12372A;
+}
+
+.navbar {
+    background-color: #436850 !important;;
+}
+
+.nav-link, .navbar-brand {
+    color: #fdf500;
+}
+
+.card {
+    background-color: #ADBC9F;
+}
+
+.btn-primary {
+    background-color: #12372A;
+    border-color: #12372A;
+}
+
+.btn-primary:hover {
+    background-color: #436850;
+    border-color: #436850;
+}
+
