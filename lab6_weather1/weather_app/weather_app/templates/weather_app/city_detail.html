@@ -4,32 +4,48 @@
 <div class="container mt-4">
     <a href="{% url 'manage_subscriptions' %}" class="btn btn-secondary mb-3">Back to Subscriptions</a>
     <h2>Weather Details for {{ weather_report.name }}</h2>
-    <div>
+    <div class="cont">
         <p><strong>Coordinates:</strong> Longitude: {{ weather_report.coord.lon }}, Latitude: {{ weather_report.coord.lat }}</p>
         <p><strong>Weather Condition:</strong> {{ weather_report.weather.0.main }} - {{ weather_report.weather.0.description }}</p>
         <p><strong>Temperature:</strong> {{ weather_report.main.temp }}°C (Feels like {{ weather_report.main.feels_like }}°C)</p>
-        <p><strong>Minimum Temperature:</strong> {{ weather_report.main.temp_min }}°C, <strong>Maximum Temperature:</strong> {{ weather_report.main.temp_max }}°C</p>
+        <p><strong>Minimum Temperature:</strong> {{ weather_report.main.temp_min }}°C, <strong>Maximum
+                Temperature:</strong> {{ weather_report.main.temp_max }}°C</p>
         <p><strong>Pressure:</strong> {{ weather_report.main.pressure }} hPa, <strong>Humidity:</strong> {{ weather_report.main.humidity }}%</p>
         <p><strong>Visibility:</strong> {{ weather_report.visibility }} meters</p>
-        <p><strong>Wind:</strong> Speed: {{ weather_report.wind.speed }} m/s, Direction: {{ weather_report.wind.deg }} degrees, Gust: {{ weather_report.wind.gust }} m/s</p>
+        <p><strong>Wind:</strong> Speed: {{ weather_report.wind.speed }} m/s, Direction: {{ weather_report.wind.deg }}
+            degrees, Gust: {{ weather_report.wind.gust }} m/s</p>
         {% if weather_report.snow %}
         <p><strong>Snow Volume Last Hour:</strong> {{ weather_report.snow.1h }} mm</p>
         {% endif %}
         <p><strong>Cloudiness:</strong> {{ weather_report.clouds.all }}%</p>
         <p><strong>Sunrise:</strong> {{ weather_report.formatted_sunrise }} (local time), <strong>Sunset:</strong> {{ weather_report.formatted_sunset }} (local time)</p>
-        <p><strong>Country:</strong> {{ weather_report.sys.country }}, <strong>City ID:</strong> {{ weather_report.id }}</p>
+        <p><strong>Country:</strong> {{ weather_report.sys.country }}, <strong>City ID:</strong> {{ weather_report.id }}
+        </p>
         <p><strong>Timezone:</strong> {{ weather_report.timezone }}</p>
     </div>
 </div>
 
-<div class="comments-section">
+<div class="container mt-4">
     <h3>Comments</h3>
     {% for comment in comments %}
-    <div class="comment">
-        <p><strong>{{ comment.user.username }}</strong> ({{ comment.created_at|date:"Y-m-d H:i" }}): {{ comment.text }}</p>
-        {% if comment.user == request.user %}
-            <a href="{% url 'delete_comment' comment.id %}" class="btn btn-danger btn-sm">Delete</a>
-        {% endif %}
+    <div class="card my-2">
+        <div class="card-header">
+            {{ comment.user.username }}
+        </div>
+        <div class="card-body">
+            <div class="card-text">
+                <p>{{ comment.text }}</p>
+            </div>
+
+            <div class="card-text text-muted small">
+                {{comment.created_at}}
+            </div>
+            <br>
+            {% if comment.user == request.user %}
+            <a href="{% url 'edit_comment' comment.id %}" class="btn-danger">Edit</a>
+            <a href="{% url 'delete_comment' comment.id %}" class="btn-danger">Delete</a>
+            {% endif %}
+        </div>
     </div>
     {% endfor %}
 
@@ -38,8 +54,9 @@
     <form method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit Comment</button>
+        <button type="submit" class="btn-danger">Submit Comment</button>
     </form>
+    <br><br>
 </div>
 
 {% endblock %}

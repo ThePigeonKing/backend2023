@@ -20,7 +20,7 @@
         <form method="post" action="{% url 'manage_subscriptions' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Subscribe</button>
+            <button type="submit" class="btn-s">Subscribe</button>
         </form>
     </div>
     
@@ -45,10 +45,10 @@
                     <p class="card-text"><strong>Sunset:</strong> {{ report.formatted_sunset }} </p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{% url 'city_detail' subscription.city_name %}" class="btn btn-info btn-sm">View Details</a>
+                    <a href="{% url 'city_detail' subscription.city_name %}" class="btn-info">View Details</a>
                     <form action="{% url 'unsubscribe' subscription.id %}" method="post" class="d-inline">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-sm">Unsubscribe</button>
+                        <button type="submit" class="btn-danger">Unsubscribe</button>
                     </form>
                 </div>
             </div>

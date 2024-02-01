@@ -1,27 +1,124 @@
 body {
-    background-color: #FBFADA;
+    background-color: #b9ebf3 !important;
     color: #12372A;
 }
 
 .navbar {
-    background-color: #436850 !important;;
+    background-color: #7ebdc8 !important;;
 }
 
 .nav-link, .navbar-brand {
-    color: #fdf500;
+    color: #428b98 !important;
 }
 
 .card {
-    background-color: #ADBC9F;
-}
-
-.btn-primary {
-    background-color: #12372A;
-    border-color: #12372A;
+    background-color: #5bb408;
 }
 
 .btn-primary:hover {
     background-color: #436850;
     border-color: #436850;
 }
+.card-text{
+    color: black;
+}
+.temp-cold {
+    color: rgb(74, 74, 245);
+}
 
+.temp-warm {
+    color: rgb(224, 114, 114);
+}
+
+.row{
+    background-color: #b9ebf3;
+}
+.navbar-brand{
+    display: inline-block;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    text-align: center;
+    text-decoration: none;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    background-color: #b9ebf3;
+}
+.btn-s, .btn-danger{
+    display: inline-block;
+    padding: 10px 20px; 
+    font-size: 15px; 
+    text-align: center;
+    text-decoration: none;
+    border: none; 
+    color: black !important;
+    border-radius: 5px; 
+    cursor: pointer; 
+    background-color: #7ebdc8;
+}
+.btn-info{
+    display: inline-block;
+    padding: 10px 20px; 
+    font-size: 15px; 
+    text-align: center;
+    text-decoration: none;
+    border: none; 
+    color: black !important;
+    border-radius: 5px; 
+    cursor: pointer; 
+    background-color: #b9ebf3;
+}
+li{
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    border: none; 
+    font-size: bolder;
+    border-radius: 5px; 
+    cursor: pointer; 
+    background-color: #b9ebf3;
+}
+.container-fluid{
+    background-color: #7ebdc8 !important;
+}
+.card-body{
+    background-color: #d7f1f5;
+}
+
+.cont{
+    display: inline-block;
+    padding: 10px 20px; 
+    font-size: 15px;
+    text-decoration: none;
+    border: none; 
+    color: black !important;
+    border-radius: 5px; 
+    cursor: pointer; 
+    background-color: #d7f1f5 !important;
+}
+
+h3, h4{
+    color: black;
+    font-weight: bolder;
+    background-color: #7ebdc8;
+}
+
+textarea#id_text{
+    height: 50px;
+    width: 200px;
+    background-color: #d7f1f5;
+}
+input{
+    border: 3px solid;
+    border-color: #7ebdc8;
+    color: black;
+    font-size: bolder;
+    background-color: #d7f1f5;
+    display: block;
+    width: 350px;
+    height: 30px;;
+    border-radius: 8px;
+}
+.new-ul{
+    width: 550px;
+}

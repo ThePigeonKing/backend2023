@@ -11,7 +11,7 @@
     {% bootstrap_css %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'main_page' %}">WeatherApp</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,16 +23,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'manage_subscriptions' %}">Subscriptions</a>
                         </li>
+                        &nbsp
                         <li class="nav-item">
-                            <form action="{% url 'logout' %}" method="post" class="form-inline" style="display:inline;">
+                            <form action="{% url 'logout' %}" method="post" class="form-inline">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-link nav-link" style="display:inline; padding:0;">Logout</button>
+                                <button type="submit" class="btn btn-link nav-link">Logout</button>
                             </form>
                         </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
+                        &nbsp
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}">Register</a>
                         </li>

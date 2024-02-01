@@ -10,7 +10,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ report.name }}</h5>
-                        <p class="card-text">Temperature: {{ report.main.temp }}°C</p>
+                        <div class="{% if report.main.temp < 0 %}temp-cold{% else %}temp-warm{% endif %}">
+                            Temperature: {{ report.main.temp }}°C
+                        </div>
                         <p class="card-text">Condition: {{ report.weather.0.description }}</p>
                     </div>
                 </div>

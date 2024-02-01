@@ -1,19 +1,21 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import CitySubscription, Comment
+
 from .api import get_city_choices
+from .models import CitySubscription, Comment
+
 
 class CitySubscriptionForm(forms.ModelForm):
     city_name = forms.ChoiceField(choices=[])
 
     class Meta:
         model = CitySubscription
-        fields = ['city_name']
-    
+        fields = ["city_name"]
+
     def __init__(self, *args, **kwargs):
         super(CitySubscriptionForm, self).__init__(*args, **kwargs)
-        self.fields['city_name'].choices = get_city_choices()
+        self.fields["city_name"].choices = get_city_choices()
 
 
 class RegisterForm(UserCreationForm):
@@ -30,7 +32,8 @@ class RegisterForm(UserCreationForm):
             user.save()
         return user
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['text']
+        fields = ["text"]
