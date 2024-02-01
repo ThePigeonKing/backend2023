@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="container mt-4">
+    <a href="{% url 'manage_subscriptions' %}" class="btn btn-secondary mb-3">Back to Subscriptions</a>
     <h2>Weather Details for {{ weather_report.name }}</h2>
     <div>
         <p><strong>Coordinates:</strong> Longitude: {{ weather_report.coord.lon }}, Latitude: {{ weather_report.coord.lat }}</p>
