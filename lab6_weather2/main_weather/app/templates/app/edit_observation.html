@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+{% load django_bootstrap5 %} 
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Observation</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <a href="{% url 'weather_details' observation.location.name %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

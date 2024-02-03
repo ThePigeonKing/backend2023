@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/cloudy.png' %}">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="flex-wrapper">
+        <header>
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'homepage' %}">WeatherApp</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
+                            </li>
+                            <!-- Additional nav items can go here -->
+                        </ul>
+                        <!-- Search form in the navbar -->
+                        <form class="d-flex" action="{% url 'weather_search' %}" method="get">
+                            <input class="form-control me-2" type="search" name="location" placeholder="Search City" aria-label="Search">
+                            <button class="btn btn-outline-light me-2" type="submit">Search</button>
+                        </form>
+                        <ul class="navbar-nav">
+                            {% if user.is_authenticated %}
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+                            </form>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light me-2" href="{% url 'signup' %}">Sign up</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% if messages %}
+            <div class="container mt-3">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <main class="container mt-4 content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="text-muted py-4">
+            <div class="container">
+                <p class="mb-1">WeatherApp &copy; MEPHI.</p>
+            </div>
+        </footer>
+    </div>
+    
+    {% bootstrap_javascript %}
+</body>
+</html>

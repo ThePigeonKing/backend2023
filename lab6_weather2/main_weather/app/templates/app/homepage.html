@@ -1,0 +1,81 @@
+<!-- app/templates/app/homepage.html -->
+{% extends 'app/base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h1 class="text-center">Welcome to WeatherApp</h1>
+        <p class="text-center">Get the latest weather updates for any location.</p>
+        <form action="{% url 'weather_search' %}" method="get" class="d-flex justify-content-center">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="location" placeholder="Enter location..." aria-label="Location">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </div>
+        </form>
+
+        <!-- Display weather data for specific locations -->
+        <div class="mt-5">
+            <h2 class="text-center">Weather in Popular Cities</h2>
+            <div class="row">
+                {% for weather in weather_data %}
+                <div class="col-md-3 mt-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <!-- Make city names clickable -->
+                            <h5 class="card-title"><a href="{% url 'weather_details' city_name=weather.city %}">{{ weather.city }}</a></h5>
+                            <p class="card-text">{{ weather.temperature }}°C</p>
+                            <p class="card-text">{{ weather.description }}</p>
+                            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="{{ weather.description }}">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+        {% if user.is_authenticated %}
+        <h2>Subscribed Cities</h2>
+        <div class="row">
+            {% for weather in sub_weather_data %}
+                <div class="col-md-3 mt-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <!-- Make city names clickable -->
+                            <h5 class="card-title"><a href="{% url 'weather_details' city_name=weather.city %}">{{ weather.city }}</a></h5>
+                            <p class="card-text">{{ weather.temperature }}°C</p>
+                            <p class="card-text">{{ weather.description }}</p>
+                            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="{{ weather.description }}">
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-md-3 mt-3">
+                    No subscribtions yet
+                </div>
+            {% endfor %}
+            <!-- {% for subscription in subscribed_cities %}
+            <div class="col-md-3 mt-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ subscription.location.name }}</h5>
+                        <a href="{% url 'weather_details' city_name=subscription.location.name %}" class="btn btn-primary">View Details</a>
+                        <form action="{% url 'unsubscribe_city' subscription.location.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Unsubscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-md-3 mt-3">
+                No subscribtions yet
+            </div>
+            {% endfor %} -->
+        </div>
+    {% endif %}
+    
+    </div>
+</div>
+{% endblock %}
+

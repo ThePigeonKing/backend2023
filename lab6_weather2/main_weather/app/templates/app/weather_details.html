@@ -1,0 +1,99 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Weather Details for {{ weather_data.name }}</h2>
+    
+    <div>
+        <!-- Weather details -->
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ weather_data.name }}</h5>
+                <p class="card-text">
+                    <div>
+                        <p>Temperature: {{ weather_data.temperature }}°C</p>
+                        <p>Feels Like: {{ weather_data.feels_like }}°C</p>
+                        <p>Humidity: {{ weather_data.humidity }}%</p>
+                        <p>Pressure: {{ weather_data.pressure }} hPa</p>
+                        <p>Visibility: {{ weather_data.visibility }} km</p>
+                        <p>Wind Speed: {{ weather_data.wind_speed }} km/h</p>
+                        <p>Cloudiness: {{ weather_data.cloudiness }}%</p>
+                        <p>Description: {{ weather_data.description }}</p>
+                        <p>Sunrise: {{ weather_data.sunrise }}</p>
+                        <p>Sunset: {{ weather_data.sunset }}</p>
+                    </div>
+                </p>
+                <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="Weather Icon" class="img-fluid">
+            </div>
+        </div>
+
+        <div class="mt-3 d-flex align-items-center">
+        {% if weather_data.name %}
+        <!-- Weather Forecast Page Link -->
+        <div>
+            <a href="{% url 'weather_forecast' city_name=weather_data.name %}" class="btn btn-info me-2">View Forecast</a>
+        </div>
+        {% endif %}
+
+        <!-- Subscription Options -->
+        {% if user.is_authenticated %}
+            {% if is_subscribed %}
+            <form action="{% url 'unsubscribe_city' city %}" method="post" class="mb-0">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-warning">Unsubscribe</button>
+            </form>
+            {% else %}
+            <form action="{% url 'subscribe_city' city %}" method="post" class="mb-0">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    <hr class="my-4">
+    <!-- Observations -->
+    <div>
+        <h3>Current Observations</h3>
+        {% for observation in observations %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <!-- Observation Icon -->
+                    {% if observation.icon %}
+                    <img src="{{ observation.icon.url }}" alt="Observation Icon" style="max-height: 100px; width: auto; margin-right: 15px;">
+                    {% endif %}
+                    <!-- Observation Title -->
+                    <h4 class="card-title mb-0">{{ observation.name }}</h5>
+                </div>
+                <br>
+                <p class="card-text">{{ observation.commentary }}</p>
+                <ul>
+                    <li>Temperature: {{ observation.temperature }}°C</li>
+                    <li>Feels Like: {{ observation.feels_like }}°C</li>
+                    <li>Minimum Temperature: {{ observation.min_temperature }}°C</li>
+                    <li>Maximum Temperature: {{ observation.max_temperature }}°C</li>
+                    <li>Pressure: {{ observation.pressure }} hPa</li>
+                    <li>Humidity: {{ observation.humidity }}%</li>
+                    <li>State: {{ observation.state }}</li>
+                    <li>Date of Review: {{ observation.date_of_review|date:"Y-m-d H:i" }}</li>
+                </ul>
+                {% if observation.user == user %}
+                <a href="{% url 'edit_observation' observation.id %}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{% url 'delete_observation' observation.id %}" class="btn btn-danger btn-sm">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <p>No observations have been added for this city yet.</p>
+        {% endfor %}
+
+        <!-- Add Observation Button -->
+        {% if is_subscribed %}
+        <div class="mt-3">
+            <a href="{% url 'add_observation' city_id %}" class="btn btn-success">Add Observation</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+{% endblock %}

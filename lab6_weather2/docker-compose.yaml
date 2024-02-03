@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: yourdbname
+      POSTGRES_USER: yourdbuser
+      POSTGRES_PASSWORD: yourdbpassword
+
+  # web:
+  #   build: .
+  #   volumes:
+  #     - .:/code
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - DB_NAME=yourdbname
+  #     - DB_USER=yourdbuser
+  #     - DB_PASSWORD=yourdbpassword
+  #     - DB_HOST=db
+  #     - API_KEY=b1bc9601c0820e9bb2491a9b604e50dc
+  #   depends_on:
+  #     - db
+
+volumes:
+  postgres_data:

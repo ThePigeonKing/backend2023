@@ -1,0 +1,34 @@
+{% extends 'app/base.html' %}
+
+{% load static %}  <!-- Load static if not already loaded in base.html -->
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Weather Forecast for {{ city_name }}</h2>
+
+    <!-- Forecast list -->
+    <div class="accordion" id="forecastAccordion">
+        {% for day, forecasts in forecast_data.items %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                    {{ day }}  <!-- Display the day -->
+                </button>
+            </h2>
+            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#forecastAccordion">
+                <div class="accordion-body">
+                    {% for forecast in forecasts %}
+                    <div class="forecast-item mb-3">
+                        <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description }}" class="me-2">
+                        <span class="me-2">{{ forecast.datetime }}</span>
+                        <span class="me-2">{{ forecast.temperature }}°C</span>
+                        <span>{{ forecast.description }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

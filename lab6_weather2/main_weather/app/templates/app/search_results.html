@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Search Results for "{{ query }}"</h2>
+    {% if weather_data %}
+        {% for weather in weather_data %}
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'weather_details' city_name=weather.city %}">{{ weather.city }}</a></h5>
+                <p class="card-text">Temperature: {{ weather.temperature }}°C</p>
+                <p class="card-text">Description: {{ weather.description }}</p>
+                <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="{{ weather.description }}">
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <p>No weather data found for "{{ query }}".</p>
+    {% endif %}
+</div>
+{% endblock %}
+
