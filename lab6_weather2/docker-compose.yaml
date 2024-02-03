@@ -25,7 +25,6 @@ services:
   #     - DB_USER=yourdbuser
   #     - DB_PASSWORD=yourdbpassword
   #     - DB_HOST=db
-  #     - API_KEY=b1bc9601c0820e9bb2491a9b604e50dc
   #   depends_on:
   #     - db
 
