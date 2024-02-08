@@ -1,0 +1,32 @@
+{% extends "yayd/base.html" %}
+
+{% block content %}
+<h1>Проводник</h1>
+
+<!-- Формы для создания папки и загрузки файла -->
+<div class="mt-3">
+    <a href="{% url 'create_folder' %}" class="btn btn-success">Создать новую папку</a>
+    <a href="{% url 'upload_file' %}" class="btn btn-primary">Загрузить файл</a>
+</div>
+
+<!-- Отображение папок и файлов -->
+<div class="mt-5">
+    <h2>Папки</h2>
+    {% for folder in folders %}
+        <p>{{ folder.name }}</p>
+        <!-- Ссылки для навигации в папку или действий с ней -->
+    {% empty %}
+        <p>Папок нет.</p>
+    {% endfor %}
+</div>
+
+<div class="mt-5">
+    <h2>Файлы</h2>
+    {% for file in files %}
+        <p>{{ file.name }}</p>
+        <!-- Ссылки для скачивания или действий с файлом -->
+    {% empty %}
+        <p>Файлов нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}

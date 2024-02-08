@@ -1,0 +1,40 @@
+{% extends "yayd/base.html" %}
+
+{% block content %}
+<h1>Главная страница</h1>
+
+<div class="mt-5">
+    <h2>Недавно созданные файлы</h2>
+    <ul>
+        {% for file in recent_files %}
+            <li>{{ file.name }} (создан {{ file.created_at }})</li>
+        {% empty %}
+            <li>Нет файлов.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="mt-5">
+    <h2>Недавно полученные доступы</h2>
+    <ul>
+        {% for perm in recent_permissions %}
+            <li>
+                Доступ к 
+                {% if perm.folder %}
+                    {{ perm.folder.name }}
+                {% else %}
+                    {{ perm.file.name }}
+                {% endif %}
+                от {{ perm.user.username }} ({{ perm.permission_type }})
+            </li>
+        {% empty %}
+    <li>Нет доступов.</li>
+{% endfor %}
+    </ul>
+</div>
+
+<div class="mt-5">
+    <a href="{% url 'explorer' %}" class="btn btn-primary">Перейти в "Проводник"</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "yayd/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Файлы и папки</h2>
+    {% if current_folder %}
+        {% if current_folder.parent %}
+            <a href="{% url 'folders_detail' current_folder.parent.id %}" class="btn btn-secondary mb-3">Назад</a>
+        {% else %}
+            <a href="{% url 'folders' %}" class="btn btn-secondary mb-3">Назад к корневой папке</a>
+        {% endif %}
+    {% endif %}
+    
+    <ul class="list-group">
+        <li class="list-group-item active">Папки:</li>
+        {% for folder in folders %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div style="flex-grow: 1;">
+                    <a href="{% url 'folders_detail' folder.id %}" class="stretched-link">{{ folder.name }}</a>
+                </div>
+                <form action="{% url 'delete_folder' folder.id %}" method="post" style="margin-left: 10px;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить эту папку и все ее содержимое?');">Удалить</button>
+                </form>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Папок нет</li>
+        {% endfor %}
+    </ul>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item active">Файлы:</li>
+        {% for file in files %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div style="flex-grow: 1;">
+                    {{ file.name }}
+                </div>
+                <div>
+                    <a href="{% url 'view_file' file.id %}" class="btn btn-primary btn-sm">Просмотреть</a>
+                    <form action="{% url 'edit_file' file.id %}" method="get" style="display: inline;">
+                        <button type="submit" class="btn btn-secondary btn-sm">Редактировать</button>
+                    </form>
+                    <form action="{% url 'delete_file' file.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот файл?');">Удалить</button>
+                    </form>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Файлов нет</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

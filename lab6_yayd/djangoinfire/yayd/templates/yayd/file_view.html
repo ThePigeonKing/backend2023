@@ -1,0 +1,32 @@
+{% extends "yayd/base.html" %}
+
+<style>
+    .custom-container {
+        border: 1px solid #000; /* Задаем черный цвет границы */
+        border-radius: 5px; /* Округляем углы границы */
+        padding: 15px; /* Добавляем отступ внутри контейнера */
+    }
+</style>
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Просмотр файла: {{ file.name }}</h2>
+    <div class="container-fluid">
+        {% if file_type == 'image' %}
+            <img src="{{ file.file.url }}" class="img-fluid" alt="{{ file.name }}">
+        {% elif file_type == 'text' %}
+            <pre>{{ content|safe }}</pre>
+        {% elif file_type == 'pdf' %}
+            <div class="alert alert-info" role="alert">
+                Просмотр PDF-файлов непосредственно на сайте невозможен.<br><a href="{{ file.file.url }}" class="alert-link">Скачайте файл</a>, чтобы просмотреть его содержимое.
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Вывести содержимое файла невозможно.
+            </div>
+        {% endif %}
+    </div>
+    <br>
+    <a href="{% url 'folders' %}" class="btn btn-primary mt-3">Назад к папкам</a>
+</div>
+{% endblock %}

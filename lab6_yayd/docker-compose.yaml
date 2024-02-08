@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13.3
+    restart: always
+    environment:
+      POSTGRES_DB: "main"
+      POSTGRES_USER: "worker"
+      POSTGRES_PASSWORD: "somestrongpass2024"
+    volumes:
+      - postgres_yayd:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_yayd:
+    driver: local

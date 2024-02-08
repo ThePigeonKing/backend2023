@@ -1,0 +1,12 @@
+{% extends "yayd/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Редактирование файла: {{ file.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="content" class="form-control" rows="10">{{ content }}</textarea>
+        <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+    </form>
+</div>
+{% endblock %}
