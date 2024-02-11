@@ -1,8 +1,26 @@
 {% extends "yayd/base.html" %}
+{% load django_bootstrap5 %}
 
 {% block content %}
+{% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <div class="container mt-4">
     <h2>Файлы и папки</h2>
+
+    <div class="mb-3">
+        <a href="{% url 'create_folder' %}" class="btn btn-primary">Создать папку</a>
+        <a href="{% url 'upload_file' %}" class="btn btn-success">Загрузить файл</a>
+    </div>
+
     {% if current_folder %}
         {% if current_folder.parent %}
             <a href="{% url 'folders_detail' current_folder.parent.id %}" class="btn btn-secondary mb-3">Назад</a>
@@ -15,18 +33,23 @@
         <li class="list-group-item active">Папки:</li>
         {% for folder in folders %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div style="flex-grow: 1;">
-                    <a href="{% url 'folders_detail' folder.id %}" class="stretched-link">{{ folder.name }}</a>
+                <div>
+                    <a href="{% url 'folders_detail' folder.id %}">{{ folder.name }}</a>
+                    <span class="text-muted">({{ folder.owner.username }})</span>
                 </div>
-                <form action="{% url 'delete_folder' folder.id %}" method="post" style="margin-left: 10px;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить эту папку и все ее содержимое?');">Удалить</button>
-                </form>
+                <div>
+                    <a href="{% url 'share_access' folder.id 'folder' %}" class="btn btn-outline-secondary btn-sm">Поделиться доступом</a>
+                    <form action="{% url 'delete_folder' folder.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="event.stopPropagation(); return confirm('Вы уверены, что хотите удалить эту папку и все ее содержимое?');">Удалить</button>
+                    </form>
+                </div>
             </li>
         {% empty %}
             <li class="list-group-item">Папок нет</li>
         {% endfor %}
     </ul>
+    
 
     <ul class="list-group mt-3">
         <li class="list-group-item active">Файлы:</li>
@@ -34,12 +57,16 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div style="flex-grow: 1;">
                     {{ file.name }}
+                    <span class="text-muted">({{ file.owner.username }})</span>
                 </div>
                 <div>
                     <a href="{% url 'view_file' file.id %}" class="btn btn-primary btn-sm">Просмотреть</a>
-                    <form action="{% url 'edit_file' file.id %}" method="get" style="display: inline;">
-                        <button type="submit" class="btn btn-secondary btn-sm">Редактировать</button>
-                    </form>
+                    {% if file.is_editable %}
+                        <form action="{% url 'edit_file' file.id %}" method="get" style="display: inline;">
+                            <button type="submit" class="btn btn-secondary btn-sm">Редактировать</button>
+                        </form>
+                    {% endif %}
+                    <a href="{% url 'share_access' file.id 'file' %}" class="btn btn-outline-secondary btn-sm">Поделиться доступом</a>
                     <form action="{% url 'delete_file' file.id %}" method="post" style="display: inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот файл?');">Удалить</button>
@@ -50,5 +77,6 @@
             <li class="list-group-item">Файлов нет</li>
         {% endfor %}
     </ul>
+    
 </div>
 {% endblock %}

@@ -1,11 +1,35 @@
-<!-- create_folder.html -->
 {% extends 'yayd/base.html' %}
 
 {% block content %}
-<h2>Создать новую папку</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Создать</button>
-</form>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Создать папку</h2>
+        <form id="uploadForm" method="post" enctype="multipart/form-data" action="{% url 'create_folder' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Загрузить</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Находим выпадающий список папок и форму
+        var folderSelect = document.querySelector("select[name='parent']");
+        var form = document.getElementById("uploadForm");
+    
+        // Обработчик изменения выбранного значения в выпадающем списке
+        folderSelect.addEventListener("change", function() {
+            var folderId = this.value; // Получаем выбранное значение (ID папки)
+            
+            // Если папка выбрана, изменяем action формы
+            if (folderId) {
+                form.action = "/create_folder/" + folderId + "/";
+            } else {
+                // Если папка не выбрана, возвращаем к действию по умолчанию
+                form.action = "{% url 'create_folder' %}";
+            }
+        });
+    });
+    </script>
 {% endblock %}

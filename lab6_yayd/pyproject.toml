@@ -3,7 +3,7 @@ name = "lab6-yayd"
 version = "0.1.0"
 description = ""
 authors = ["lebedev"]
-readme = "README.md"
+readme = ""
 packages = [{include = "lab6_yayd"}]
 
 [tool.poetry.dependencies]

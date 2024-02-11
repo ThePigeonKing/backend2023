@@ -1,10 +1,36 @@
 {% extends 'yayd/base.html' %}
 
+
 {% block content %}
-<h2>Загрузить файл</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Загрузить</button>
-</form>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Загрузка файла</h2>
+        <form id="uploadForm" method="post" enctype="multipart/form-data" action="{% url 'upload_file' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Загрузить</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Находим выпадающий список папок и форму
+    var folderSelect = document.querySelector("select[name='folder']");
+    var form = document.getElementById("uploadForm");
+
+    // Обработчик изменения выбранного значения в выпадающем списке
+    folderSelect.addEventListener("change", function() {
+        var folderId = this.value; // Получаем выбранное значение (ID папки)
+        
+        // Если папка выбрана, изменяем action формы
+        if (folderId) {
+            form.action = "/upload_file/" + folderId + "/";
+        } else {
+            // Если папка не выбрана, возвращаем к действию по умолчанию
+            form.action = "{% url 'upload_file' %}";
+        }
+    });
+});
+</script>
 {% endblock %}

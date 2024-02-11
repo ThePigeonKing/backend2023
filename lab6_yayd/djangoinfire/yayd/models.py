@@ -31,7 +31,6 @@ class File(models.Model):
         super(File, self).save(*args, **kwargs)
 
 
-
 class Permission(models.Model):
     VIEW = 'view'
     EDIT = 'edit'
@@ -51,21 +50,3 @@ class Permission(models.Model):
     
     def __str__(self):
         return f"{self.user} -> {self.permitted_user}: {self.permission_type}"
-    
-
-# class AccessPermission(models.Model):
-#     VIEW = 'view'
-#     EDIT = 'edit'
-#     PERMISSION_CHOICES = [
-#         (VIEW, 'View'),
-#         (EDIT, 'Edit'),
-#     ]
-    
-#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='given_permissions')
-#     shared_with = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_permissions')
-#     folder = models.ForeignKey('Folder', on_delete=models.CASCADE, related_name='folder_permissions', null=True, blank=True)
-#     file = models.ForeignKey('File', on_delete=models.CASCADE, related_name='file_permissions', null=True, blank=True)
-#     permission_type = models.CharField(max_length=4, choices=PERMISSION_CHOICES, default=VIEW)
-
-#     class Meta:
-#         unique_together = ('user', 'shared_with', 'folder', 'file', 'permission_type')

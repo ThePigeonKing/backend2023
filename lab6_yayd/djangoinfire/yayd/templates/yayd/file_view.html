@@ -13,7 +13,7 @@
     <h2>Просмотр файла: {{ file.name }}</h2>
     <div class="container-fluid">
         {% if file_type == 'image' %}
-            <img src="{{ file.file.url }}" class="img-fluid" alt="{{ file.name }}">
+            <img src="{{ file.file.url }}" class="img-fluid" alt="{{ file.name }}" style="max-width: 450px; max-height: 300px">
         {% elif file_type == 'text' %}
             <pre>{{ content|safe }}</pre>
         {% elif file_type == 'pdf' %}
@@ -27,6 +27,15 @@
         {% endif %}
     </div>
     <br>
-    <a href="{% url 'folders' %}" class="btn btn-primary mt-3">Назад к папкам</a>
+    <div class="row align-items-center">
+        {% if file_type != 'pdf' %}
+            <div class="col-auto pe-1">
+                <a href="{{ file.file.url }}" download="{{ file.name }}" class="btn btn-primary">Скачать файл</a>
+            </div>
+        {% endif %}
+        <div class="col-auto ps-1">
+            <a href="{% url 'folders' %}" class="btn btn-secondary">Назад к папкам</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
