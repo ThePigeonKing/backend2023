@@ -11,7 +11,29 @@ services:
       - postgres_yayd:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - yayd_network
+  
+  web:
+    build: .
+    volumes:
+      # - ./djangoinfire:/usr/src/app
+      - media_volume:/usr/src/app/media
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    environment:
+      - "POSTGRES_HOST=postgres"
+    networks:
+      - yayd_network
+
 
 volumes:
   postgres_yayd:
     driver: local
+  media_volume:
+
+networks:
+  yayd_network:
+    driver: bridge

@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'main',
         'USER': 'worker',
         'PASSWORD': 'somestrongpass2024',
-        'HOST': 'localhost',
+        'HOST': os.getenv("POSTGRES_HOST", "localhost"),
         'PORT': '5432', 
     }
 }
